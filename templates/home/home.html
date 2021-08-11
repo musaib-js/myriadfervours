@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title%} Myriad Fervours | Literature and Tech {% endblock %}
+{% block homeactive%} active {% endblock %}
+
+{% block body %}
+
+<div class="bd-masthead mb-3" id="content">
+  <div class="container px-4 px-md-3">
+    <div class="row align-items-lg-center">
+      <div class="col-8 mx-auto col-md-4 order-md-2 col-lg-5">
+        <img width="600" height="600" class="img-fluid mb-3 mb-md-0 my-4 rounded" src="/static/img/home.jpg">
+      </div>
+      <div class="col-md-8 order-md-1 col-lg-7 text-justify text-md-start">
+        <h1 class="mb-3 my-5">Welcome to Myriad Fervours!</h1>
+        <p class="lead mb-4">
+          Are you a reader, who wants to explore more, more, more and just the most. You've hit a jackpot upon landing here. Yes, you heard it right, A JACKPOT. We've got a treasure for you. A treasure of knowledge, a multitude of literature and tech. Finely fabricated articles, beautifully whittled poems and breath-taking paragraphs blended with ostentatious literary techniques are just waiting to be read. What are you waiting for? Just navigate to the articles to surcharge your brain with beauty.
+        </p>
+
+          <div class="d-flex flex-column flex-md-row justify-content-center">
+              <a href="/blog" class="btn btn-lg btn-outline-secondary mb-3">Go to Blog</a>
+          </div>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+<h2 class="text-muted">Popular Blogposts</h2>
+{% for post in allPosts  %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Post by {{post.author}}</strong>
+            <h3 class="mb-0">{{post.title}}</h3>
+            <div class="mb-1 text-muted">{{post.timeStamp}}</div>
+            <p class="card-text mb-auto">{{post.content| truncatechars:500 | safe}}</p>
+            <div class="my-2">
+            	<a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+            </div>
+
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" width="200" height="250" src="/media/{{post.image}}">
+        </div>
+        </div>
+
+        {% endfor %}
+      </div>
+
+{% endblock %}
